@@ -1,4 +1,4 @@
-(function() {
+(function () {
   let greens, pinks, blues;
 
   function map(num, in_min, in_max, out_min, out_max) {
@@ -21,7 +21,7 @@
     let g = map(event.screenX, 0, window.innerWidth, 142, 196);
     let b = map(event.screenX, 0, window.innerWidth, 162, 59);
     let color = rgb(r, g, b);
-    pinks.forEach(function(element) {
+    pinks.forEach(function (element) {
       element.style.fill = color;
     });
   }
@@ -31,7 +31,7 @@
     let g = map(event.screenX, 0, window.innerWidth, 149, 165);
     let b = map(event.screenX, 0, window.innerWidth, 94, 0);
     let color = rgb(r, g, b);
-    greens.forEach(function(element) {
+    greens.forEach(function (element) {
       element.style.fill = color;
     });
   }
@@ -41,7 +41,7 @@
     let g = map(event.screenX, 0, window.innerWidth, 178, 72);
     let b = map(event.screenX, 0, window.innerWidth, 232, 185);
     let color = rgb(r, g, b);
-    blues.forEach(function(element) {
+    blues.forEach(function (element) {
       element.style.fill = color;
     });
   }
@@ -52,6 +52,9 @@
     blues = Array.prototype.slice.call(document.querySelectorAll(".blue"));
     window.addEventListener("mousemove", onMouseMove);
     window.addEventListener("touchmove", onMouseMove);
+    document.body.addEventListener("touchstart", function (e) {
+      e.preventDefault();
+    });
   }
   init();
 })();
