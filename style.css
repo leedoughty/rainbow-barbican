@@ -39,6 +39,8 @@ body {
 }
 
 #svg {
+  position: absolute;
+  top: 10%;
   width: 80%;
   height: 80%;
 }
