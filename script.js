@@ -36,3 +36,5 @@ function onMouseMove(event) {
 }
 
 window.addEventListener("mousemove", onMouseMove);
+window.addEventListener("touchstart", onMouseMove);
+window.addEventListener("touchmove", onMouseMove);
