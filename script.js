@@ -1,60 +1,38 @@
-(function () {
-  let greens, pinks, blues;
+const greens = document.querySelectorAll(".green");
+const pinks = document.querySelectorAll(".pink");
+const blues = document.querySelectorAll(".blue");
 
-  function map(num, in_min, in_max, out_min, out_max) {
-    return ((num - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min;
-  }
+function map(num, in_min, in_max, out_min, out_max) {
+  return ((num - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min;
+}
 
-  function rgb(r, g, b) {
-    return `rgb(${Math.floor(r)},${Math.floor(g)},${Math.floor(b)}`;
-  }
+function generateRgbValue(r, g, b) {
+  return `rgb(${Math.floor(r)},${Math.floor(g)},${Math.floor(b)}`;
+}
 
-  function onMouseMove(event) {
-    changePinkColors(event);
-    changeGreenColors(event);
-    changeBlueColors(event);
-  }
+function changeColours(
+  event,
+  colour1,
+  colour2,
+  colour3,
+  colour4,
+  colour5,
+  colour6,
+  elementToChange
+) {
+  const r = map(event.screenX, 0, window.innerWidth, colour1, colour2);
+  const g = map(event.screenX, 0, window.innerWidth, colour3, colour4);
+  const b = map(event.screenX, 0, window.innerWidth, colour5, colour6);
+  const colour = generateRgbValue(r, g, b);
+  elementToChange.forEach((element) => {
+    element.style.fill = colour;
+  });
+}
 
-  // TODO: Refactor into one function
-  function changePinkColors(event) {
-    let r = map(event.screenX, 0, window.innerWidth, 255, 255);
-    let g = map(event.screenX, 0, window.innerWidth, 142, 196);
-    let b = map(event.screenX, 0, window.innerWidth, 162, 59);
-    let color = rgb(r, g, b);
-    pinks.forEach(function (element) {
-      element.style.fill = color;
-    });
-  }
+function onMouseMove(event) {
+  changeColours(event, 14, 255, 149, 165, 94, 0, greens);
+  changeColours(event, 255, 255, 142, 196, 162, 59, pinks);
+  changeColours(event, 72, 232, 178, 72, 232, 185, blues);
+}
 
-  function changeGreenColors(event) {
-    let r = map(event.screenX, 0, window.innerWidth, 14, 255);
-    let g = map(event.screenX, 0, window.innerWidth, 149, 165);
-    let b = map(event.screenX, 0, window.innerWidth, 94, 0);
-    let color = rgb(r, g, b);
-    greens.forEach(function (element) {
-      element.style.fill = color;
-    });
-  }
-
-  function changeBlueColors(event) {
-    let r = map(event.screenX, 0, window.innerWidth, 72, 232);
-    let g = map(event.screenX, 0, window.innerWidth, 178, 72);
-    let b = map(event.screenX, 0, window.innerWidth, 232, 185);
-    let color = rgb(r, g, b);
-    blues.forEach(function (element) {
-      element.style.fill = color;
-    });
-  }
-
-  function init() {
-    greens = Array.prototype.slice.call(document.querySelectorAll(".green"));
-    pinks = Array.prototype.slice.call(document.querySelectorAll(".pink"));
-    blues = Array.prototype.slice.call(document.querySelectorAll(".blue"));
-    window.addEventListener("mousemove", onMouseMove);
-    window.addEventListener("touchmove", onMouseMove);
-    document.body.addEventListener("touchstart", function (e) {
-      e.preventDefault();
-    });
-  }
-  init();
-})();
+window.addEventListener("mousemove", onMouseMove);
