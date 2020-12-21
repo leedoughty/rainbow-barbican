@@ -47,10 +47,41 @@ function changeColours(
   });
 }
 
+const colourVal = Array.from({ length: 18 }, () => {
+  return Math.floor(Math.random() * 255);
+});
+
 function onMouseMove(event) {
-  changeColours(event, 14, 255, 149, 165, 94, 0, greens);
-  changeColours(event, 255, 255, 142, 196, 162, 59, pinks);
-  changeColours(event, 72, 232, 178, 72, 232, 185, blues);
+  changeColours(
+    event,
+    colourVal[0],
+    colourVal[1],
+    colourVal[2],
+    colourVal[3],
+    colourVal[4],
+    colourVal[5],
+    greens
+  );
+  changeColours(
+    event,
+    colourVal[6],
+    colourVal[7],
+    colourVal[8],
+    colourVal[9],
+    colourVal[10],
+    colourVal[11],
+    pinks
+  );
+  changeColours(
+    event,
+    colourVal[12],
+    colourVal[13],
+    colourVal[14],
+    colourVal[15],
+    colourVal[16],
+    colourVal[17],
+    blues
+  );
 }
 
 window.addEventListener("mousemove", onMouseMove);
