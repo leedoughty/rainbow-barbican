@@ -27,8 +27,20 @@ function changeColours(
     colour1,
     colour2
   );
-  const g = map(event.screenX, 0, window.innerWidth, colour3, colour4);
-  const b = map(event.screenX, 0, window.innerWidth, colour5, colour6);
+  const g = map(
+    event.screenX ?? event.touches[0].clientX,
+    0,
+    window.innerWidth,
+    colour3,
+    colour4
+  );
+  const b = map(
+    event.screenX ?? event.touches[0].clientX,
+    0,
+    window.innerWidth,
+    colour5,
+    colour6
+  );
   const colour = generateRgbValue(r, g, b);
   elementToChange.forEach((element) => {
     element.style.fill = colour;
