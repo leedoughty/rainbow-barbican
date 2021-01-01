@@ -22,21 +22,21 @@ function changeColours(
 ) {
   const r = map(
     event.screenX ?? event.touches[0].clientX,
-    0,
+    event.screenY ?? event.touches[0].clientY,
     window.innerWidth,
     colour1,
     colour2
   );
   const g = map(
     event.screenX ?? event.touches[0].clientX,
-    0,
+    event.screenY ?? event.touches[0].clientY,
     window.innerWidth,
     colour3,
     colour4
   );
   const b = map(
     event.screenX ?? event.touches[0].clientX,
-    0,
+    event.screenY ?? event.touches[0].clientY,
     window.innerWidth,
     colour5,
     colour6
